@@ -10,9 +10,9 @@
         <span th:text="${noDirectors}"/>
         <table>
             <tr>
-                <th>ID</th>
-                <th>First name</th>
-                <th>Last name</th>
+                <th th:text="#{directors.id}">ID</th>
+                <th th:text="#{directors.firstname}">First name</th>
+                <th th:text="#{directors.lastName}">Last name</th>
             </tr>
             <tr th:each="director: ${directors}" th:object="${director}">
                 <td th:text="*{directorID}">ID</td>
@@ -21,6 +21,14 @@
             </tr>
         </table>
     </div>
+    <footer>
+        <span th:with="currentUrl=(${@thymeleafBeans.removeLangFromUrl()})">
+            <a th:href="@{${currentUrl}(lang=ie)}">Irish</a>
+        </span>
+        <span th:with="currentUrl=(${@thymeleafBeans.removeLangFromUrl()})">
+            <a th:href="@{${currentUrl}(lang=fr)}">French</a>
+        </span>
+    </footer>
 
 </body>
 </html>

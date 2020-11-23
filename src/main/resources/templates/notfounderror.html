@@ -6,10 +6,22 @@
     <title>Directors</title>
 </head>
 <body>
-    <h1>Error page >~<</h1>
+    <h1>
+        <span th:text="#{notfounderror.heading}"/>
+        >~<
+    </h1>
     <div>
         <span th:text="${error}"/>
     </div>
+
+    <footer>
+        <span th:with="currentUrl=(${@thymeleafBeans.removeLangFromUrl()})">
+            <a th:href="@{${currentUrl}(lang=ie)}">Irish</a>
+        </span>
+        <span th:with="currentUrl=(${@thymeleafBeans.removeLangFromUrl()})">
+            <a th:href="@{${currentUrl}(lang=fr)}">French</a>
+        </span>
+    </footer>
 
 
 </body>
