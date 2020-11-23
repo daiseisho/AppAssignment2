@@ -27,7 +27,6 @@ public class AnyUserControllers {
 	
 	@GetMapping("/directors")
 	public String getAllDirectorsAlphabetically(Model model) {
-		System.out.println("hereeeeee\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		List<Director> directorList = directorService.getDirectorsAlphabetical();
 		
 		if(directorList.isEmpty()) {
@@ -71,6 +70,7 @@ public class AnyUserControllers {
 			return "notfounderror";
 		}
 	}
+	
 }
 
 

@@ -6,8 +6,10 @@
     <title>Movies</title>
 </head>
 <body>
+<header th:insert="fragments :: heading"></header>
 <div class="centre">
     <span th:text="${noMovies}"/>
+    <span th:text="${moviesByDirector}"></span>
     <table>
         <tr>
             <th th:text="#{movies.id}">ID</th>
@@ -22,14 +24,7 @@
     </table>
 </div>
 
-<footer>
-        <span th:with="currentUrl=(${@thymeleafBeans.removeLangFromUrl()})">
-            <a th:href="@{${currentUrl}(lang=ie)}">Irish</a>
-        </span>
-    <span th:with="currentUrl=(${@thymeleafBeans.removeLangFromUrl()})">
-            <a th:href="@{${currentUrl}(lang=fr)}">French</a>
-        </span>
-</footer>
+<footer th:insert="fragments :: languages"></footer>
 
 </body>
 </html>
