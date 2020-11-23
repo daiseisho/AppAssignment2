@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <title>Directors</title>
+</head>
+<body>
+    <div class="centre">
+        <span th:text="${noDirectors}"/>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+            <tr th:each="director: ${directors}" th:object="${director}">
+                <td th:text="*{directorID}">ID</td>
+                <td th:text="*{firstName}">First name</td>
+                <td th:text="*{lastName}">Last name</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
