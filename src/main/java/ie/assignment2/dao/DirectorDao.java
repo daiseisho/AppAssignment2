@@ -10,5 +10,4 @@ public interface DirectorDao extends JpaRepository<Director, Integer>{
 	List<Director> findAllByOrderByLastNameDesc();
 	boolean existsByDirectorID(int id);
 	Director findByDirectorID(int id);
-
 }
