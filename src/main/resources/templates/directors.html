@@ -6,21 +6,26 @@
     <title>Directors</title>
 </head>
 <body>
+<div class="centre">
+    <header th:insert="fragments :: heading"></header>
     <div class="centre">
         <span th:text="${noDirectors}"/>
         <table>
             <tr>
-                <th>ID</th>
-                <th>First name</th>
-                <th>Last name</th>
+                <th th:text="#{directors.id}">ID</th>
+                <th th:text="#{directors.firstname}">First name</th>
+                <th th:text="#{directors.lastName}">Last name</th>
             </tr>
             <tr th:each="director: ${directors}" th:object="${director}">
                 <td th:text="*{directorID}">ID</td>
                 <td th:text="*{firstName}">First name</td>
                 <td th:text="*{lastName}">Last name</td>
+                <td><a th:href="'/movies/' + *{directorID}"/>director movies</td>
             </tr>
         </table>
     </div>
+   <footer th:insert="fragments :: languages"></footer>
+</div>
 
 </body>
 </html>

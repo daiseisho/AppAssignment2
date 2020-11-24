@@ -3,22 +3,15 @@
 <head>
     <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css" />
     <meta charset="UTF-8">
-    <title>Directors</title>
+    <title>Home</title>
 </head>
 <body>
 <div class="centre">
-<header th:insert="fragments :: heading"></header>
-    <h1>
-        <span th:text="#{notfounderror.heading}"/>
-        >~<
-    </h1>
-    <div>
-        <span th:text="${error}"/>
-    </div>
+    <header th:insert="fragments :: heading"></header>
+
 
     <footer th:insert="fragments :: languages"></footer>
 </div>
-
 
 </body>
 </html>
