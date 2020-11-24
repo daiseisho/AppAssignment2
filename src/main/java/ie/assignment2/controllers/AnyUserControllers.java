@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ie.assignment2.entities.Director;
 import ie.assignment2.entities.Movie;
@@ -69,6 +70,11 @@ public class AnyUserControllers {
 			model.addAttribute("error", "error ocurred when getting all movies");
 			return "notfounderror";
 		}
+	}
+	
+	@GetMapping("/")
+	public String loadHomePage() {
+		return "home";
 	}
 	
 }

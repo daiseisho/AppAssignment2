@@ -6,25 +6,26 @@
     <title>Movies</title>
 </head>
 <body>
-<header th:insert="fragments :: heading"></header>
 <div class="centre">
-    <span th:text="${noMovies}"/>
-    <span th:text="${moviesByDirector}"></span>
-    <table>
-        <tr>
-            <th th:text="#{movies.id}">ID</th>
-            <th th:text="#{movies.title}">Title</th>
-            <th th:text="#{movies.year}">Year</th>
-        </tr>
-        <tr th:each="movie: ${movies}" th:object="${movie}">
-            <td th:text="*{movieID}">ID</td>
-            <td th:text="*{title}">Title</td>
-            <td th:text="*{year}">Year</td>
-        </tr>
-    </table>
+    <header th:insert="fragments :: heading"></header>
+    <div>
+        <span th:text="${noMovies}"/>
+        <span th:text="${moviesByDirector}"></span>
+        <table>
+            <tr>
+                <th th:text="#{movies.id}">ID</th>
+                <th th:text="#{movies.title}">Title</th>
+                <th th:text="#{movies.year}">Year</th>
+            </tr>
+            <tr th:each="movie: ${movies}" th:object="${movie}">
+                <td th:text="*{movieID}">ID</td>
+                <td th:text="*{title}">Title</td>
+                <td th:text="*{year}">Year</td>
+            </tr>
+        </table>
+    </div>
+    <footer th:insert="fragments :: languages"></footer>
 </div>
-
-<footer th:insert="fragments :: languages"></footer>
 
 </body>
 </html>

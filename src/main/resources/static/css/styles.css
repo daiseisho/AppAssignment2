@@ -2,3 +2,10 @@
     font-family: Arial;
     color: navy;
 }
+
+.centre{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
