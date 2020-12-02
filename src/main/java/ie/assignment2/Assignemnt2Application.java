@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import ie.assignment2.entities.Director;
+import ie.assignment2.entities.User;
 import ie.assignment2.service.DirectorService;
 import ie.assignment2.service.MovieService;
 import ie.assignment2.service.UserService;
@@ -42,8 +43,8 @@ public class Assignemnt2Application implements CommandLineRunner {
 		movieService.addMovie("wowzers the movie 2", directorService.getDirectorById(1), 2020);
 		movieService.addMovie("wowzers the movie", directorService.getDirectorById(1), 2010);
 		//directorService.addDirector("meme", "machine");
-		boolean added = userService.addUser("adam", "holland", true);
-		System.out.println(added);
+		User added = userService.addUser("adam", "holland", true, "test@gmail.com", "testinggg");
+		System.out.println(added.toString());
 		
 		//Director d = directorDao.getOne(1);
 		//movieDao.save(new Movie("Testing movie", movieDirector))

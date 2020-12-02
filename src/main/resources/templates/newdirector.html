@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <title>New Director</title>
+</head>
+<body>
+<div class="centre">
+    <header th:insert="fragments :: heading"></header>
+    <div>
+       <form method="post" th:action="@{/newdirector}" th:object="${newDirectorForm}">
+           <label for="firstName" th:text="#{directors.firstname}"></label>
+           <input type="text" th:field="*{firstName}"/>
+           <br><label for="lastName" th:text="#{directors.lastName}"></label>
+           <input type="text" th:field="*{lastName}"/>
+
+           <div th:if="${duplicateDirectorName}">
+               <span th:text="${duplicateDirectorName}"></span>
+               <span th:text="#{directors.alreadyexists}"></span>
+           </div>
+
+           <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+           <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+
+           <br><input type="submit" th:value="#{submit}"/>
+       </form>
+    </div>
+    <footer th:insert="fragments :: languages"></footer>
+</div>
+
+</body>
+</html>

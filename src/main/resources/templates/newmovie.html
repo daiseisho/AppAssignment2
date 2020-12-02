@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <title>New Movie</title>
+</head>
+<body>
+<div class="centre">
+    <header th:insert="fragments :: heading"></header>
+    <div>
+        <form method="post" th:action="@{/newmovie}" th:object="${newMovieForm}">
+            <label for="title" th:text="#{movies.title}"></label>
+            <input type="text" th:field="*{title}"/>
+            <br><label for="year" th:text="#{movies.year}"></label>
+            <input type="number" th:field="*{year}"/>
+            <br><label for="directorId" th:text="#{directors.directorName}"></label>
+            <select th:field="*{directorId}">
+                <option
+                        th:each="item : ${directors}"
+                        th:value="${item.directorID}"
+                        th:text="${item.firstName} + ' ' + ${item.lastName}">
+                </option>
+            </select>
+
+            <div th:if="${pastMaxYearRange}">
+                <span th:text="${pastMaxYearRange}"></span>
+                <span th:text="#{movies.pastMaxYear}"></span>
+            </div>
+
+            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+            <div th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
+
+            <br><input type="submit" th:value="#{submit}"/>
+        </form>
+    </div>
+    <footer th:insert="fragments :: languages"></footer>
+</div>
+</body>
+</html>

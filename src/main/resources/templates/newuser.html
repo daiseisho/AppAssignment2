@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+<body>
+<div class="centre">
+    <header th:insert="fragments :: heading"></header>
+    <div>
+        <form method="post" th:action="@{/newuser}" th:object="${newUserForm}">
+            <label for="firstName" th:text="#{user.firstName}"></label>
+            <input type="text" th:field="*{firstName}"/>
+            <br><label for="lastName" th:text="#{user.lastName}"></label>
+            <input type="text" th:field="*{lastName}"/>
+            <br><label for="email" th:text="#{user.email}"></label>
+            <input type="email" th:field="*{email}"/>
+            <br><label for="password" th:text="#{user.password}"></label>
+            <input type="password" th:field="*{password}"/>
+            <br><label for="admin" th:text="#{user.admin}"></label>
+            <input type="checkbox" th:field="*{admin}"/>
+
+
+            <div th:if="${errorCreatingUser}">
+                <span th:text="#{user.errorCreating}"></span>
+            </div>
+
+            <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+            <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            <div th:if="${#fields.hasErrors('admin')}" th:errors="*{admin}"></div>
+
+            <br><input type="submit" th:value="#{submit}"/>
+        </form>
+    </div>
+    <footer th:insert="fragments :: languages"></footer>
+</div>
+
+</body>
+</html>

@@ -20,19 +20,19 @@ public class DirectorServiceImplementation implements DirectorService {
 
 	@Override
 	public Director addDirector(String firstName, String lastName) {
-		
-		Director d=null;
-		
-		
 		try {
-			d=new Director(firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase(),
+			Director director=new Director(firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase(),
 					lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase());
 			
-			directorDao.save(d);
-		return d;
+			if(!directorExists(director.getFirstName(), director.getLastName())) {
+				directorDao.save(director);
+				return director;
+			}
+			
 		} catch(Exception e) {
-			return d;
+			return null;
 		}
+		return null;
 	}
 
 	@Override
@@ -48,6 +48,12 @@ public class DirectorServiceImplementation implements DirectorService {
 	public Director getDirectorById(int id) {
 		// TODO Auto-generated method stub
 		return directorDao.findByDirectorID(id);
+	}
+
+	@Override
+	public boolean directorExists(String firstName, String lastName) {
+		// TODO Auto-generated method stub
+		return directorDao.existsByFirstNameAndLastName(firstName, lastName);
 	}
 
 }
