@@ -41,12 +41,6 @@ public class NewUserController {
 				newUserForm.getEmail(),
 				newUserForm.getPassword());
 		
-		System.out.println(user.toString());
-		/*if(user == null) {
-			redirectAttributes.addFlashAttribute("pastMaxYearRange", newMovieForm.getYear());
-			return "redirect:newmovie";
-		}*/
-		
 		return "redirect:/";
 	}	
 
