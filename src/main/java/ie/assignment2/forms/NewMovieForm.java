@@ -8,10 +8,12 @@ import lombok.Data;
 
 @Data
 public class NewMovieForm {
-	@Size(min=4, max=30)
+	@Size(min=4, max=30, message="movie title must be between 4 and 30 characters")
 	private String title;
-	@Min(value=1888)
+	
+	@Min(value=1888, message="movie year must be between 1888 and current year")
 	private int year;
+	
 	@NotNull
 	private int directorId;
 

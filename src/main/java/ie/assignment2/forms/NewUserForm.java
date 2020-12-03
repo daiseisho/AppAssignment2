@@ -1,6 +1,5 @@
 package ie.assignment2.forms;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -20,10 +19,10 @@ public class NewUserForm {
 	@NotNull
 	private boolean admin;
 	
-	@Size(min=4)
+	@Size(min=4, message="email should be at least 4 characters")
 	private String email;
 	
-	@Size(min=6, max=30)
+	@Size(min=6, max=30, message="Password should be between 6 and 30 characters")
 	private String password;
 	
 }
