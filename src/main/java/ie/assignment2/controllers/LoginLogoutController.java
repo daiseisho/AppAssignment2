@@ -10,8 +10,8 @@ public class LoginLogoutController {
 		public String notAuthorised() {
 			return "403";
 		}
-//		@GetMapping("/login")
-//		public String login() {
-//			return "login";
-//		}
+		@GetMapping("/login")
+		public String login() {
+			return "login";
+		}
 }

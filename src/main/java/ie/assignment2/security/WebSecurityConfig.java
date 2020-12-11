@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/movies").hasRole("ADMIN")
 			.anyRequest().authenticated()
 			.and()
-			.formLogin()
+			.formLogin().loginPage("/login").permitAll()
 			.and().httpBasic()
 			.and().exceptionHandling().accessDeniedPage("/403");
 		http.csrf().disable();
