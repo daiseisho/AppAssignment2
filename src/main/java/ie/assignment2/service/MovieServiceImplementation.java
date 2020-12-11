@@ -25,17 +25,17 @@ public class MovieServiceImplementation implements MovieService {
 	}
 
 	@Override
-	public boolean addMovie(String title, Director movieDirector, int year) {
+	public Movie addMovie(String title, Director movieDirector, int year) {
 		// TODO Auto-generated method stub
 		if(year >= 1888 && year <= Calendar.getInstance().get(Calendar.YEAR)) {
 			try {
-				movieDao.save(new Movie(title, movieDirector, year));
-				return true;
+				Movie movie = movieDao.save(new Movie(title, movieDirector, year));
+				return movie;
 			} catch(Exception e) {
-				return false;
+				return null;
 			}
 		}
-		return false;
+		return null;
 	}
 
 	@Override

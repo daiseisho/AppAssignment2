@@ -6,9 +6,10 @@ import ie.assignment2.entities.Director;
 
 public interface DirectorService {
 	List<Director> getDirectorsAlphabetical();
-	boolean addDirector(String firstName, String lastName);
+	Director addDirector(String firstName, String lastName);
 	boolean deleteDirector(int id);
 	Director getDirectorById(int id);
+	boolean directorExists(String firstName, String lastName);
 	
 	
 

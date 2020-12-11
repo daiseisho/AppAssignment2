@@ -12,16 +12,20 @@ public class UserServiceImplementation implements UserService {
 	UserDao userDao;
 
 	@Override
-	public boolean addUser(String firstName, String lastName, boolean isAdmin) {
+	public User addUser(String firstName, String lastName, boolean isAdmin, String email, String password) {
 		// TODO Auto-generated method stub
 		try {
-			userDao.save(new User(
+			User user = new User(
 					firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase(), 
 					lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase(), 
-					isAdmin));
-			return true;
+					isAdmin,
+					email,
+					password);
+			
+			userDao.save(user);
+			return user;
 		}catch(Exception e) {
-			return false;
+			return null;
 		}
 	}
 
