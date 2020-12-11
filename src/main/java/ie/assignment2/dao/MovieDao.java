@@ -14,6 +14,7 @@ import ie.assignment2.entities.Movie;
 public interface MovieDao extends JpaRepository<Movie, Integer>{
 	List<Movie> findAllByOrderByYear();
 	List<Movie> findAllByMovieDirector_DirectorID(int directorID);
+	List<Movie> findAllByYear(int year);
 	
 	@Modifying
 	@Transactional
