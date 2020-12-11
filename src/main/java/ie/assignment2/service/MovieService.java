@@ -11,5 +11,6 @@ public interface MovieService{
 	boolean updateMovieTitle(String title, int id);
 	boolean deleteMovie(int id);
 	List<Movie> getAllMoviesByDirector(int directorID);
+	List<Movie> getAllMoviesByYear(int year);
 
 }
