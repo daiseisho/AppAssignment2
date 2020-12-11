@@ -75,4 +75,10 @@ public class MovieServiceImplementation implements MovieService {
 		return null;
 	}
 
+	@Override
+	public List<Movie> getAllMoviesByYear(int year) {
+		// TODO Auto-generated method stub
+		return movieDao.findAllByYear(year);
+	}
+
 }
