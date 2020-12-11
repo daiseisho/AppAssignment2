@@ -21,18 +21,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/css/**","/").permitAll()
-		.antMatchers("/directors").hasAnyRole("ADMIN","USER")
-		.antMatchers("/movies").hasRole("ADMIN")
-		.anyRequest().authenticated()
-		.and()
-		.formLogin()
-		.and()
-		.httpBasic();
-		
-		
-		
-		
+			.antMatchers("/css/**","/","/login/**").permitAll()
+			.antMatchers("/directors").hasAnyRole("ADMIN","USER")
+			.antMatchers("/movies").hasRole("ADMIN")
+			.anyRequest().authenticated()
+			.and()
+			.formLogin()
+			.and().httpBasic()
+			.and().exceptionHandling().accessDeniedPage("/403");
+		http.csrf().disable();
+	
 	}
 	
 	@Bean

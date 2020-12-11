@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <title>Directors</title>
+</head>
+<body>
+<div class="centre">
+    <header th:insert="fragments :: heading"></header>
+    <div class="centre">
+    	<form method=post th:action="@{/login}">
+        	<table>
+            	<tr>
+                	<td><label for="username" th:text="#{login.username}">Username<label></td>
+                	<td><input type="text" placeholder="Enter Username" name="username" required></td>
+            	</tr>
+            	<tr">
+                	<td><label for="password" th:text="#{login.password}">Password<label></td>
+                	<td><input type="password" placeholder="Enter Password" name="password" required></td>
+            	</tr>
+        	</table>
+        	<button type="submit" th.value="#{login.login}">Login</button>
+        </form>
+    </div>
+   <footer th:insert="fragments :: languages"></footer>
+</div>
+
+</body>
+</html>
