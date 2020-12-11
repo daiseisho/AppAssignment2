@@ -23,12 +23,18 @@ public class User {
 	@Column(nullable = false)
 	private String lastName;
 	@Column(nullable = false)
-	private Boolean isAdmin;
+	private boolean admin;
+	@Column(nullable = false)
+	private String email;
+	@Column(nullable = false)
+	private String password;
 	
-	public User(String firstName, String lastName, boolean isAdmin) {
+	public User(String firstName, String lastName, boolean isAdmin, String email, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.isAdmin = isAdmin;
+		this.admin = isAdmin;
+		this.email = email;
+		this.password = password;
 	}
 
 }

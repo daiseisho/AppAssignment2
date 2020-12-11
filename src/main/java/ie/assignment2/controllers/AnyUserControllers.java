@@ -29,7 +29,6 @@ public class AnyUserControllers {
 	@GetMapping("/directors")
 	public String getAllDirectorsAlphabetically(Model model) {
 		List<Director> directorList = directorService.getDirectorsAlphabetical();
-		
 		if(directorList.isEmpty()) {
 			model.addAttribute("noDirectors", "No directors in the databse");
 			return "directors";
