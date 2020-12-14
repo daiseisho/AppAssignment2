@@ -1,8 +1,11 @@
 package ie.assignment2.service;
 
-import ie.assignment2.entities.User;
+import ie.assignment2.entities.MyUser;
 
 public interface UserService {
-	User addUser(String firstName, String lastName, boolean isAdmin, String email, String password);
+	MyUser save(MyUser aUser);
+
+	MyUser addUser(String firstName, String lastName, boolean admin, String email, String password);
+
 
 }

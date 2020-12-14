@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ie.assignment2.entities.User;
+import ie.assignment2.entities.MyUser;
 import ie.assignment2.forms.NewUserForm;
 import ie.assignment2.service.UserService;
 
@@ -34,7 +34,7 @@ public class NewUserController {
 			return "newuser";
 		}
 			
-		User user = userService.addUser(
+		MyUser myUser = userService.addUser(
 				newUserForm.getFirstName(),
 				newUserForm.getLastName(),
 				newUserForm.isAdmin(),

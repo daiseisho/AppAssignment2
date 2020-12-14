@@ -1,3 +1,5 @@
+
+
 <div th:fragment="heading">
     <nav>
         <a th:text="#{fragments.home}" th:href="@{/}">Home</a>
@@ -6,6 +8,8 @@
         <a th:text="#{fragments.addMovie}" th:href="@{/newmovie}">Add Movie</a>
         <a th:text="#{fragments.addUser}" th:href="@{/newuser}">Add User</a>
         <a th:text="#{fragments.addDirector}" th:href="@{/newdirector}">Add Director</a>
+		<a sec:authorize="!isAuthenticated()" th:href="@{/login}" th:text="#{fragments.login}" class="loginout">login</a>
+		<a sec:authorize="isAuthenticated()" th:href="@{/log_me_out}" th:text="#{fragments.logout}" class="loginout">logout</a>
     </nav>
 </div>
 
