@@ -1,8 +1,12 @@
 package ie.assignment2.controllers;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,10 +24,16 @@ public class NewUserController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	@GetMapping("/newuser")
 	public String addUser(Model model)
 	{
 		model.addAttribute("newUserForm", new NewUserForm());
+		
+		List<String> roleType=Arrays.asList("USER","ADMIN");
+		model.addAttribute("roleType",roleType);
 		return "newuser";
 	}
 	
@@ -31,15 +41,21 @@ public class NewUserController {
 	public String addUserPost(@Valid NewUserForm newUserForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) 
 	{
 		if(bindingResult.hasErrors()) {
+			List<String> roleType=Arrays.asList("USER","ADMIN");
 			return "newuser";
 		}
-			
+		
+
+		
+		
 		MyUser myUser = userService.addUser(
+				newUserForm.getUserEmail(),
+				passwordEncoder.encode(newUserForm.getUserPassword()),
 				newUserForm.getFirstName(),
 				newUserForm.getLastName(),
-				newUserForm.isAdmin(),
-				newUserForm.getEmail(),
-				newUserForm.getPassword());
+				newUserForm.getRole());
+		
+		userService.save(myUser);
 		
 		return "redirect:/";
 	}	

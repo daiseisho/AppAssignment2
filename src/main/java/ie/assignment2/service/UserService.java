@@ -5,7 +5,7 @@ import ie.assignment2.entities.MyUser;
 public interface UserService {
 	MyUser save(MyUser aUser);
 
-	MyUser addUser(String firstName, String lastName, boolean admin, String email, String password);
+	MyUser addUser(String email, String password,String firstName, String lastName, String role);
 
 
 }

@@ -20,9 +20,14 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
-	public MyUser addUser(String firstName, String lastName, boolean admin, String email, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public MyUser addUser(String email, String password, String firstName, String lastName, String role) {
+
+		MyUser myUser = new MyUser(email,password,firstName,lastName,role);
+		
+		
+		return myUser;
 	}
+
+
 
 }
