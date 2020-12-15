@@ -38,10 +38,11 @@ public class NewUserController {
 	}
 	
 	@PostMapping("newuser")
-	public String addUserPost(@Valid NewUserForm newUserForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) 
+	public String addUserPost(Model model,@Valid NewUserForm newUserForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) 
 	{
 		if(bindingResult.hasErrors()) {
 			List<String> roleType=Arrays.asList("USER","ADMIN");
+			model.addAttribute("roleType",roleType);
 			return "newuser";
 		}
 		
