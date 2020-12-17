@@ -1,7 +1,9 @@
 package ie.assignment2.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -21,40 +23,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/css/**","/","/login/**").permitAll()
-			.antMatchers("/directors").hasAnyRole("ADMIN","USER")
-			.antMatchers("/movies").hasRole("ADMIN")
-			.anyRequest().authenticated()
+			.antMatchers("/css/**", "/", "/directors", "/movies/**", "/newuser", "/login/**").permitAll()
+			.antMatchers("/newdirector", "/newmovie", "/api/**", "/myapi/**", "/editmovie").hasAnyRole("USER")
+			.antMatchers("/delete/**").hasAnyRole("ADMIN")
+			.anyRequest().authenticated();
+			
+		http.formLogin()
+				.loginPage("/login")
+				.loginProcessingUrl("/log_me_in")
 			.and()
-			.formLogin().loginPage("/login").permitAll()
-			.and().httpBasic()
-			.and().exceptionHandling().accessDeniedPage("/403");
+				.logout()
+					.logoutUrl("/log_me_out")
+					.logoutSuccessUrl("/")
+			.and()
+				.httpBasic()
+			.and()
+				.exceptionHandling().accessDeniedPage("/403");
 		
 		http.csrf().disable();
 	
 	}
 	
-	@Bean
-	protected UserDetailsService userDetailsDervice() {
-		
-		String encodedPassword = passwordEncoder().encode("password");
-		
-		String adminpassword=passwordEncoder().encode("admin12345");
-		
-		UserDetails user1= User
-				.withUsername("user")
-				.password(encodedPassword)
-				.roles("USER")
-				.build();
-		
-		UserDetails user2=User
-				.withUsername("admin")
-				.password(adminpassword)
-				.roles("ADMIN")
-				.build();
-		
-		return new InMemoryUserDetailsManager(user1,user2);
-	}
+	@Autowired
+	UserDetailsService userDetailsService;
 
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception{
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
 
 }

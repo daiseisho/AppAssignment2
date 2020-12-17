@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css" />
@@ -13,7 +13,7 @@
 	<h1 th:text="#{fragments.login}"></h1>
     <header th:insert="fragments :: heading"></header>
     <main>
-    	<form method="post" th:action="@{/login}">
+    	<form method="post" th:action="@{/log_me_in}">
     	<table>
     	<tr>
 			<td><label for="username" th:text="#{login.username}">Username</label></td>

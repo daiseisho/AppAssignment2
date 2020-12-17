@@ -15,42 +15,36 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ie.assignment2.entities.Director;
 import ie.assignment2.entities.Movie;
-import ie.assignment2.forms.NewMovieForm;
+import ie.assignment2.forms.EditMovieForm;
 import ie.assignment2.service.DirectorService;
 import ie.assignment2.service.MovieService;
 @Controller
-public class NewMovieController {
+public class EditMovieController {
 	
 	@Autowired
 	MovieService movieService;
 	@Autowired
 	DirectorService directorService;
 	
-	@GetMapping("/newmovie")
-	public String addMovie(Model model)
+	@GetMapping("/editmovie")
+	public String editMovie(Model model)
 	{
-		List<Director> directorList = directorService.getDirectorsAlphabetical();
-		model.addAttribute("directors", directorList);
-		model.addAttribute("newMovieForm", new NewMovieForm());
-		return "newmovie";
+		List<Movie> movieList = movieService.getAllMoviesOrderByChronologicalOrder();
+		model.addAttribute("movies", movieList);
+		model.addAttribute("editMovieForm", new EditMovieForm());
+		return "editmovie";
 	}
 	
-	@PostMapping("newmovie")
-	public String addMoviePost(Model model, @Valid NewMovieForm newMovieForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) 
+	@PostMapping("editmovie")
+	public String editMoviePost(Model model, @Valid EditMovieForm editMovieForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) 
 	{
 		if(bindingResult.hasErrors()) {
 			List<Director> directorList = directorService.getDirectorsAlphabetical();
 			model.addAttribute("directors", directorList);
-			return "newmovie";
+			return "editmovie";
 		}
 		
-		Director director = directorService.getDirectorById(newMovieForm.getDirectorId());
-			
-		Movie movie = movieService.addMovie(newMovieForm.getTitle(), director, newMovieForm.getYear());
-		if(movie == null) {
-			redirectAttributes.addFlashAttribute("pastMaxYearRange", newMovieForm.getYear());
-			return "redirect:newmovie";
-		}
+		movieService.updateMovieTitle(editMovieForm.getTitle(), editMovieForm.getMovieId());
 		
 		return "redirect:movies/";
 	}	

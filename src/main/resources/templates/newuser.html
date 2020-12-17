@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css" />
     <meta charset="UTF-8">
@@ -10,27 +10,40 @@
     <header th:insert="fragments :: heading"></header>
     <div>
         <form method="post" th:action="@{/newuser}" th:object="${newUserForm}">
-            <label for="firstName" th:text="#{user.firstName}"></label>
-            <input type="text" th:field="*{firstName}"/>
-            <br><label for="lastName" th:text="#{user.lastName}"></label>
-            <input type="text" th:field="*{lastName}"/>
-            <br><label for="email" th:text="#{user.email}"></label>
-            <input type="email" th:field="*{email}"/>
-            <br><label for="password" th:text="#{user.password}"></label>
-            <input type="password" th:field="*{password}"/>
-            <br><label for="admin" th:text="#{user.admin}"></label>
-            <input type="checkbox" th:field="*{admin}"/>
+        <table>
+            <tr>
+            	<td><label for="firstName" th:text="#{user.firstName}"></label></td>
+            	<td><input type="text" th:field="*{firstName}"/></td>
+            </tr>
+            <tr>
+            	<td><label for="lastName" th:text="#{user.lastName}"></label></td>
+            	<td><input type="text" th:field="*{lastName}"/></td>
+            </tr>
+            <tr>
+            	<td><label for="email" th:text="#{user.email}"></label></td>
+            	<td><input type="email" th:field="*{userEmail}"/></td>
+            </tr>
+            <tr>
+            	<td><label for="password" th:text="#{user.password}"></label></td>
+            	<td><input type="password" th:field="*{userPassword}"/></td>
+            </tr>
+            <tr>
+            	<td><label for="admin" th:text="#{user.admin}"></label></td>
+            	<td><select th:field="*{role}">
+            		<option th:each="p : ${roleType}" th:value="${p}" th:text="${p}"/>
+            	</select></td>
+            </tr>
 
-
+		</table>
             <div th:if="${errorCreatingUser}">
                 <span th:text="#{user.errorCreating}"></span>
             </div>
 
             <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
             <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
-            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-            <div th:if="${#fields.hasErrors('admin')}" th:errors="*{admin}"></div>
+            <div th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}"></div>
+            <div th:if="${#fields.hasErrors('userPassword')}" th:errors="*{userPassword}"></div>
+            <div th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>
 
             <br><input type="submit" th:value="#{submit}"/>
         </form>
