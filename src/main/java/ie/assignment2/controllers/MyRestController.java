@@ -34,6 +34,14 @@ public class MyRestController {
 		return new ResponseEntity<List<Movie>>(movieList, HttpStatus.FOUND);
 	}
 	
+	@GetMapping("/directors")
+	ResponseEntity<List<Director>> getDirectors() {
+		List<Director> directorList = directorService.getDirectorsAlphabetical();
+		if(directorList.isEmpty())
+				return new ResponseEntity<List<Director>>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<List<Director>>(directorList, HttpStatus.FOUND);
+	}
+	
 	@DeleteMapping("/director/delete/{id}")
 	ResponseEntity<Director> deleteDirectorById(@PathVariable("id") int id) {
 		Boolean status = directorService.deleteDirector(id);
