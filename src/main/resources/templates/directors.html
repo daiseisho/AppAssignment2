@@ -16,12 +16,14 @@
                 <th th:text="#{directors.id}">ID</th>
                 <th th:text="#{directors.firstname}">First name</th>
                 <th th:text="#{directors.lastName}">Last name</th>
+                <th th:text="#{directors.movies}">Movies</th>
             </tr>
             <tr th:each="director: ${directors}" th:object="${director}">
                 <td th:text="*{directorID}">ID</td>
                 <td th:text="*{firstName}">First name</td>
                 <td th:text="*{lastName}">Last name</td>
-                <td><a th:href="'/movies/' + *{directorID}"/>director movies</td>
+                <td><a th:href="'/movies/' + *{directorID}"/>Movies</td>
+                <td sec:authorize="hasAnyRole('ROLE_ADMIN')"><a th:href="'/delete/directors/' + *{directorID}"/>Delete</td>
             </tr>
         </table>
     </div>
