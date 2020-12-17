@@ -7,6 +7,7 @@
 </head>
 <body>
 <div class="centre">
+    <h1 th:text="#{fragments.newDirector}"></h1>
     <header th:insert="fragments :: heading"></header>
     <div>
        <form method="post" th:action="@{/newdirector}" th:object="${newDirectorForm}">
