@@ -10,7 +10,7 @@ import ie.assignment2.service.DirectorService;
 import ie.assignment2.service.MovieService;
 
 @Controller
-public class AdminUserControllers {
+public class DeleteControllers {
 	
 	@Autowired
 	DirectorService directorService;

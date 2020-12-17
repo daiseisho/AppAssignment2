@@ -6,6 +6,7 @@
         <a th:text="#{fragments.directors}" th:href="@{/directors}">Directors</a>
         <a th:text="#{fragments.movies}" th:href="@{/movies}">Movies</a>
         <a sec:authorize="hasAnyRole('ROLE_USER')" th:text="#{fragments.addMovie}" th:href="@{/newmovie}">Add Movie</a>
+        <a sec:authorize="hasAnyRole('ROLE_USER')" th:text="#{fragments.editMovie}" th:href="@{/editmovie}">Edit Movie</a>
         <a th:text="#{fragments.addUser}" th:href="@{/newuser}">Add User</a>
         <a sec:authorize="hasAnyRole('ROLE_USER')" th:text="#{fragments.addDirector}" th:href="@{/newdirector}">Add Director</a>
 		<a sec:authorize="!isAuthenticated()" th:href="@{/login}" th:text="#{fragments.login}" class="loginout">login</a>

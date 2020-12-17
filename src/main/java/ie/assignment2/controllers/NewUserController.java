@@ -46,9 +46,6 @@ public class NewUserController {
 			return "newuser";
 		}
 		
-
-		
-		
 		MyUser myUser = userService.addUser(
 				newUserForm.getUserEmail(),
 				passwordEncoder.encode(newUserForm.getUserPassword()),
