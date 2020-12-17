@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ie.assignment2.dao.UserDao;
-import ie.assignment2.entities.User;
+import ie.assignment2.entities.MyUser;
 @Service
 public class UserServiceImplementation implements UserService {
 	
@@ -12,21 +12,22 @@ public class UserServiceImplementation implements UserService {
 	UserDao userDao;
 
 	@Override
-	public User addUser(String firstName, String lastName, boolean isAdmin, String email, String password) {
-		// TODO Auto-generated method stub
-		try {
-			User user = new User(
-					firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase(), 
-					lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase(), 
-					isAdmin,
-					email,
-					password);
-			
-			userDao.save(user);
-			return user;
-		}catch(Exception e) {
+	public MyUser save(MyUser aUser) {
+		if(userDao.existsByUserEmail(aUser.getUserEmail())) {
 			return null;
-		}
+		}		
+		return userDao.save(aUser);
 	}
+
+	@Override
+	public MyUser addUser(String email, String password, String firstName, String lastName, String role) {
+
+		MyUser myUser = new MyUser(email,password,firstName,lastName,role);
+		
+		
+		return myUser;
+	}
+
+
 
 }

@@ -17,12 +17,12 @@ public class NewUserForm {
 	private String lastName;
 	
 	@NotNull
-	private boolean admin;
+	private String role;
 	
 	@Size(min=4, message="email should be at least 4 characters")
-	private String email;
+	private String userEmail;
 	
 	@Size(min=6, max=30, message="Password should be between 6 and 30 characters")
-	private String password;
+	private String userPassword;
 	
 }

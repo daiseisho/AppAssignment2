@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <title>Edit Movie</title>
+</head>
+<body>
+<div class="centre">
+    <h1 th:text="#{fragments.editMovie}"></h1>
+    <header th:insert="fragments :: heading"></header>
+    <div>
+        <form method="post" th:action="@{/editmovie}" th:object="${editMovieForm}">
+            <label for="title" th:text="#{movies.newTitle}"></label>
+            <input type="text" th:field="*{title}"/>
+            <br><label for="movieId" th:text="#{movies.movieName}"></label>
+            <select th:field="*{movieId}">
+                <option
+                        th:each="item : ${movies}"
+                        th:value="${item.movieID}"
+                        th:text="${item.title}">
+                </option>
+            </select>
+
+            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+
+            <br><input type="submit" th:value="#{submit}"/>
+        </form>
+    </div>
+    <footer th:insert="fragments :: languages"></footer>
+</div>
+</body>
+</html>

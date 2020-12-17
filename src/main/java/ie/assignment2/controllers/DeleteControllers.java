@@ -10,14 +10,14 @@ import ie.assignment2.service.DirectorService;
 import ie.assignment2.service.MovieService;
 
 @Controller
-public class AdminUserControllers {
+public class DeleteControllers {
 	
 	@Autowired
 	DirectorService directorService;
 	@Autowired
 	MovieService movieService;
 	
-	@GetMapping("/directors/delete/{directorID}")
+	@GetMapping("/delete/directors/{directorID}")
 	public String deleteDirector(@PathVariable("directorID") String directorID, Model model) {
 		if(directorService.deleteDirector(Integer.parseInt(directorID))) {
 			return "redirect:/directors";
@@ -26,7 +26,7 @@ public class AdminUserControllers {
 		return "notfounderror";
 	}
 	
-	@GetMapping("/movies/delete/{movieID}")
+	@GetMapping("/delete/movies/{movieID}")
 	public String deleteMovie(@PathVariable("movieID") String movieID, Model model) {
 		if(movieService.deleteMovie(Integer.parseInt(movieID))) {
 			return "redirect:/movies";

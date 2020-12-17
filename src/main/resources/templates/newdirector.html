@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <link th:href="@{/css/styles.css}" rel="stylesheet" type="text/css" />
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@
 </head>
 <body>
 <div class="centre">
+    <h1 th:text="#{fragments.newDirector}"></h1>
     <header th:insert="fragments :: heading"></header>
     <div>
        <form method="post" th:action="@{/newdirector}" th:object="${newDirectorForm}">
